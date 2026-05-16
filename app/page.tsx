@@ -252,35 +252,39 @@ const FAQS = [
   },
   {
     q: "Do I need to replace the AI tools my team already uses?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    a: "No. That's the point. Your team can keep using ChatGPT, Claude, Copilot, or any MCP-compatible tool they already rely on. OneStream's Finance agentic layer gives those tools the financial context and governance they're missing today. You're not replacing your AI stack. You're giving it a governed financial backbone.",
   },
   {
     q: "How is this different from asking ChatGPT a finance question?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+    a: "General-purpose AI tools are powerful, but they don't know your chart of accounts, your hierarchies, your business rules, or which numbers are final. They generate probable answers. OneStream agents execute deterministic calculations on your actual financial data. The difference is the difference between \"this looks about right\" and \"here's the auditable answer with full traceability.\"",
   },
   {
     q: "Is my financial data used to train AI models?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.",
+    a: "No. Your data stays within your governed OneStream environment. It is not used to train any external AI models. When third-party agents connect through MCP, they receive governed outputs. Your underlying data never leaves the platform.",
   },
   {
     q: 'What does "long-running agent" mean?',
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+    a: "Most AI agents respond to a single prompt and stop. SensibleAI Agents like Finance Analyst can run complex, multi-step analysis workflows on a schedule in the background. Set it up once, and results are ready when you need them. Think of it as an analyst who works overnight so the answers are on your desk in the morning.",
   },
   {
     q: "Who controls what the agents can access?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.",
+    a: "Your existing OneStream administrators. Every agent interaction, native or third-party, inherits the same role-based access controls, period locks, and approval gates your team already manages. No separate security model to configure. No reliance on the AI model to self-govern. If a user doesn't have access to a data set in OneStream, neither does their agent.",
+  },
+  {
+    q: "Do I need technical skills to use SensibleAI Agents?",
+    a: "No. Agents are designed for Finance professionals, not data scientists. Ask questions in plain business language. \"What drove the variance in EMEA operating expenses last quarter?\" Finance Analyst understands the financial context and returns a grounded, auditable answer. No SQL. No code. No dashboard configuration.",
   },
   {
     q: "How do agents work in Excel?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
+    a: "SensibleAI Agents are available directly in Excel, so your team can access financial analysis, forecasts, and search results without leaving the spreadsheet. The same governance, auditability, and deterministic computation apply whether the agent runs inside OneStream or in Excel.",
   },
   {
     q: "Can I audit what agents do?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.",
+    a: "Yes. Every query, every workflow execution, and every output is logged with a complete audit trail. This applies to native SensibleAI Agents and third-party agents connecting through MCP. Full traceability is not optional. It's built into every interaction by default.",
   },
   {
     q: "How do I get started?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi.",
+    a: "Request a demo and our team will walk you through SensibleAI Agents and the finance agentic layer in the context of your environment. Whether you want to start with a single agent or connect your existing AI tools through MCP, we'll help you find the fastest path to value.",
   },
 ];
 
@@ -699,7 +703,7 @@ export default function Home() {
 
       <section className="faq">
         <div className="section-inner">
-          <Reveal as="h2">FAQs About SensibleAI Agents</Reveal>
+          <Reveal as="h2">Frequently asked questions</Reveal>
           <FaqAccordion items={FAQS} PlusIcon={PlusIcon} MinusIcon={MinusIcon} />
         </div>
       </section>
@@ -774,29 +778,29 @@ export default function Home() {
           />
 
           <g fill="none" strokeWidth="1" strokeLinecap="round" opacity="0.55">
-            <use href="#TL1" stroke="url(#takeGradLsoft)" className="take-stream slow" />
-            <use href="#TL2" stroke="url(#takeGradLsoft)" className="take-stream slow reverse" />
-            <use href="#TL5" stroke="url(#takeGradLsoft)" className="take-stream" />
-            <use href="#TL6" stroke="url(#takeGradLsoft)" className="take-stream slow" />
-            <use href="#TR1" stroke="url(#takeGradRsoft)" className="take-stream slow reverse" />
-            <use href="#TR2" stroke="url(#takeGradRsoft)" className="take-stream slow" />
-            <use href="#TR5" stroke="url(#takeGradRsoft)" className="take-stream" />
-            <use href="#TR6" stroke="url(#takeGradRsoft)" className="take-stream slow reverse" />
+            <path d="M -40,580 C 320,585 580,615 800,640" stroke="url(#takeGradLsoft)" className="take-stream slow" />
+            <path d="M -40,640 C 320,640 580,640 800,640" stroke="url(#takeGradLsoft)" className="take-stream slow reverse" />
+            <path d="M -40,820 C 280,790 540,710 800,640" stroke="url(#takeGradLsoft)" className="take-stream" />
+            <path d="M -40,880 C 260,830 520,725 800,640" stroke="url(#takeGradLsoft)" className="take-stream slow" />
+            <path d="M 1640,580 C 1280,585 1020,615 800,640" stroke="url(#takeGradRsoft)" className="take-stream slow reverse" />
+            <path d="M 1640,640 C 1280,640 1020,640 800,640" stroke="url(#takeGradRsoft)" className="take-stream slow" />
+            <path d="M 1640,820 C 1320,790 1060,710 800,640" stroke="url(#takeGradRsoft)" className="take-stream" />
+            <path d="M 1640,880 C 1340,830 1080,725 800,640" stroke="url(#takeGradRsoft)" className="take-stream slow reverse" />
           </g>
 
           <g fill="none" strokeWidth="1.4" strokeLinecap="round">
-            <use href="#TL1" stroke="url(#takeGradL)" className="take-stream" />
-            <use href="#TL2" stroke="url(#takeGradL)" className="take-stream fast" />
-            <use href="#TL3" stroke="url(#takeGradL)" className="take-stream slow" />
-            <use href="#TL4" stroke="url(#takeGradL)" className="take-stream" />
-            <use href="#TL5" stroke="url(#takeGradL)" className="take-stream fast" />
-            <use href="#TL6" stroke="url(#takeGradL)" className="take-stream slow" />
-            <use href="#TR1" stroke="url(#takeGradR)" className="take-stream slow" />
-            <use href="#TR2" stroke="url(#takeGradR)" className="take-stream" />
-            <use href="#TR3" stroke="url(#takeGradR)" className="take-stream fast" />
-            <use href="#TR4" stroke="url(#takeGradR)" className="take-stream slow" />
-            <use href="#TR5" stroke="url(#takeGradR)" className="take-stream" />
-            <use href="#TR6" stroke="url(#takeGradR)" className="take-stream fast" />
+            <path d="M -40,580 C 320,585 580,615 800,640" stroke="url(#takeGradL)" className="take-stream" />
+            <path d="M -40,640 C 320,640 580,640 800,640" stroke="url(#takeGradL)" className="take-stream fast" />
+            <path d="M -40,700 C 320,695 580,665 800,640" stroke="url(#takeGradL)" className="take-stream slow" />
+            <path d="M -40,760 C 300,745 560,690 800,640" stroke="url(#takeGradL)" className="take-stream" />
+            <path d="M -40,820 C 280,790 540,710 800,640" stroke="url(#takeGradL)" className="take-stream fast" />
+            <path d="M -40,880 C 260,830 520,725 800,640" stroke="url(#takeGradL)" className="take-stream slow" />
+            <path d="M 1640,580 C 1280,585 1020,615 800,640" stroke="url(#takeGradR)" className="take-stream slow" />
+            <path d="M 1640,640 C 1280,640 1020,640 800,640" stroke="url(#takeGradR)" className="take-stream" />
+            <path d="M 1640,700 C 1280,695 1020,665 800,640" stroke="url(#takeGradR)" className="take-stream fast" />
+            <path d="M 1640,760 C 1300,745 1040,690 800,640" stroke="url(#takeGradR)" className="take-stream slow" />
+            <path d="M 1640,820 C 1320,790 1060,710 800,640" stroke="url(#takeGradR)" className="take-stream" />
+            <path d="M 1640,880 C 1340,830 1080,725 800,640" stroke="url(#takeGradR)" className="take-stream fast" />
           </g>
 
           <g className="take-node-glow">
@@ -876,17 +880,16 @@ export default function Home() {
         <div className="take-inner">
           <Reveal delay={0.08}>
             <h2 id="take-heading">
-              Take Finance <em>Further</em>
+              See Finance AI <em>in action</em>
               <span className="period">.</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.18}>
             <p>
-              OneStream is the only enterprise finance platform that{" "}
-              <strong>seamlessly unifies</strong> all your financial and operational data,
-              embeds <span className="ai">AI to boost productivity</span>, and{" "}
-              <strong>adapts to fit</strong> your unique needs.
+              See how <strong>built-in Finance agents</strong> and the same{" "}
+              <span className="ai">governed agentic layer</span> extend{" "}
+              <strong>trusted intelligence</strong> across your AI stack.
             </p>
           </Reveal>
 
