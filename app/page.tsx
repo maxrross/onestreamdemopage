@@ -81,7 +81,6 @@ const AGENTS = [
       },
     ],
     card: {
-      label: "Finance Analyst",
       accent: "#a884ff",
       footer: "FINANCIAL INSIGHTS ACCURACY",
       tone: "purple" as const,
@@ -111,7 +110,6 @@ const AGENTS = [
       },
     ],
     card: {
-      label: "Search Agent",
       accent: "#f5d04a",
       footer: "SPEED & SELF-SERVICE PRODUCTIVITY",
       tone: "yellow" as const,
@@ -142,9 +140,7 @@ const AGENTS = [
       },
     ],
     card: {
-      label: "Deep Analysis",
       accent: "#7b9bff",
-      footer: "STRATEGIC INSIGHTS SIMPLIFY THE COMPLEX",
       tone: "blue" as const,
     },
   },
@@ -359,98 +355,6 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1], delay: 0.1 }}
         />
-        <motion.svg
-          className="hero-flow"
-          viewBox="0 0 1600 700"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden="true"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.6, ease: [0.2, 0.7, 0.2, 1], delay: 0.2 }}
-        >
-          <defs>
-            <linearGradient id="heroGradWhite" x1="0" y1="0.5" x2="1" y2="0.5">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
-              <stop offset="45%" stopColor="#ffffff" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.75" />
-            </linearGradient>
-            <linearGradient id="heroGradLavender" x1="0" y1="0.5" x2="1" y2="0.5">
-              <stop offset="0%" stopColor="#ece1ff" stopOpacity="0" />
-              <stop offset="55%" stopColor="#d4bfff" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.85" />
-            </linearGradient>
-            <radialGradient id="heroGlow" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.32" />
-              <stop offset="40%" stopColor="#ece1ff" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-            </radialGradient>
-            <filter id="heroBlur" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="0.6" />
-            </filter>
-
-            <path id="HL1" d="M -40,80  C 300,100 720,290 1200,360" />
-            <path id="HL2" d="M -40,180 C 280,200 700,320 1200,360" />
-            <path id="HL3" d="M -40,280 C 260,290 680,340 1200,360" />
-            <path id="HL4" d="M -40,380 C 280,380 700,370 1200,360" />
-            <path id="HL5" d="M -40,480 C 300,470 720,400 1200,360" />
-            <path id="HL6" d="M -40,580 C 320,560 740,420 1200,360" />
-            <path id="HL7" d="M -40,680 C 360,650 780,450 1200,360" />
-          </defs>
-
-          <g fill="none" strokeWidth="1" strokeLinecap="round" opacity="0.55">
-            <use href="#HL1" stroke="url(#heroGradLavender)" className="hero-stream slow" />
-            <use href="#HL3" stroke="url(#heroGradLavender)" className="hero-stream slow reverse" />
-            <use href="#HL5" stroke="url(#heroGradLavender)" className="hero-stream" />
-            <use href="#HL7" stroke="url(#heroGradLavender)" className="hero-stream slow" />
-          </g>
-
-          <g fill="none" strokeWidth="1.4" strokeLinecap="round">
-            <use href="#HL1" stroke="url(#heroGradWhite)" className="hero-stream" />
-            <use href="#HL2" stroke="url(#heroGradWhite)" className="hero-stream fast" />
-            <use href="#HL3" stroke="url(#heroGradWhite)" className="hero-stream slow" />
-            <use href="#HL4" stroke="url(#heroGradWhite)" className="hero-stream" />
-            <use href="#HL5" stroke="url(#heroGradWhite)" className="hero-stream fast" />
-            <use href="#HL6" stroke="url(#heroGradWhite)" className="hero-stream slow" />
-            <use href="#HL7" stroke="url(#heroGradWhite)" className="hero-stream" />
-          </g>
-
-          <g className="hero-node-glow">
-            <circle cx="1200" cy="360" r="220" fill="url(#heroGlow)" />
-            <circle cx="1200" cy="360" r="110" fill="url(#heroGlow)" />
-            <circle cx="1200" cy="360" r="50" fill="url(#heroGlow)" />
-          </g>
-
-          <circle r="2.6" fill="#ffffff" filter="url(#heroBlur)">
-            <animateMotion dur="4.2s" repeatCount="indefinite">
-              <mpath href="#HL1" />
-            </animateMotion>
-          </circle>
-          <circle r="2.2" fill="#ece1ff" filter="url(#heroBlur)">
-            <animateMotion dur="5.4s" begin="1s" repeatCount="indefinite">
-              <mpath href="#HL3" />
-            </animateMotion>
-          </circle>
-          <circle r="2.4" fill="#ffffff" filter="url(#heroBlur)">
-            <animateMotion dur="3.8s" begin="0.5s" repeatCount="indefinite">
-              <mpath href="#HL5" />
-            </animateMotion>
-          </circle>
-          <circle r="2" fill="#ece1ff" filter="url(#heroBlur)">
-            <animateMotion dur="4.8s" begin="2s" repeatCount="indefinite">
-              <mpath href="#HL2" />
-            </animateMotion>
-          </circle>
-          <circle r="2.6" fill="#ffffff" filter="url(#heroBlur)">
-            <animateMotion dur="5.2s" begin="1.6s" repeatCount="indefinite">
-              <mpath href="#HL6" />
-            </animateMotion>
-          </circle>
-          <circle r="2" fill="#ece1ff" filter="url(#heroBlur)">
-            <animateMotion dur="6s" begin="2.8s" repeatCount="indefinite">
-              <mpath href="#HL7" />
-            </animateMotion>
-          </circle>
-        </motion.svg>
         <div className="hero-inner">
           <motion.div
             className="hero-copy"
@@ -718,7 +622,7 @@ export default function Home() {
         <svg
           className="take-flow"
           viewBox="0 0 1600 900"
-          preserveAspectRatio="xMidYMid slice"
+          preserveAspectRatio="xMidYMax slice"
           aria-hidden="true"
         >
           <defs>
@@ -754,18 +658,18 @@ export default function Home() {
             </filter>
 
             {/* all streams confined to lower band so they stay below the heading + copy + buttons */}
-            <path id="TL1" d="M -40,580 C 320,585 580,615 800,640" />
-            <path id="TL2" d="M -40,640 C 320,640 580,640 800,640" />
-            <path id="TL3" d="M -40,700 C 320,695 580,665 800,640" />
-            <path id="TL4" d="M -40,760 C 300,745 560,690 800,640" />
-            <path id="TL5" d="M -40,820 C 280,790 540,710 800,640" />
-            <path id="TL6" d="M -40,880 C 260,830 520,725 800,640" />
-            <path id="TR1" d="M 1640,580 C 1280,585 1020,615 800,640" />
-            <path id="TR2" d="M 1640,640 C 1280,640 1020,640 800,640" />
-            <path id="TR3" d="M 1640,700 C 1280,695 1020,665 800,640" />
-            <path id="TR4" d="M 1640,760 C 1300,745 1040,690 800,640" />
-            <path id="TR5" d="M 1640,820 C 1320,790 1060,710 800,640" />
-            <path id="TR6" d="M 1640,880 C 1340,830 1080,725 800,640" />
+            <path id="takeTL1" d="M -40,580 C 320,585 580,615 800,640" />
+            <path id="takeTL2" d="M -40,640 C 320,640 580,640 800,640" />
+            <path id="takeTL3" d="M -40,700 C 320,695 580,665 800,640" />
+            <path id="takeTL4" d="M -40,760 C 300,745 560,690 800,640" />
+            <path id="takeTL5" d="M -40,820 C 280,790 540,710 800,640" />
+            <path id="takeTL6" d="M -40,880 C 260,830 520,725 800,640" />
+            <path id="takeTR1" d="M 1640,580 C 1280,585 1020,615 800,640" />
+            <path id="takeTR2" d="M 1640,640 C 1280,640 1020,640 800,640" />
+            <path id="takeTR3" d="M 1640,700 C 1280,695 1020,665 800,640" />
+            <path id="takeTR4" d="M 1640,760 C 1300,745 1040,690 800,640" />
+            <path id="takeTR5" d="M 1640,820 C 1320,790 1060,710 800,640" />
+            <path id="takeTR6" d="M 1640,880 C 1340,830 1080,725 800,640" />
           </defs>
 
           <line
@@ -817,42 +721,42 @@ export default function Home() {
 
           <circle r="2.6" fill="#d4bfff" filter="url(#takeSoftBlur)">
             <animateMotion dur="4.2s" repeatCount="indefinite">
-              <mpath href="#TL1" />
+              <mpath href="#takeTL1" />
             </animateMotion>
           </circle>
           <circle r="2.2" fill="#a884ff" filter="url(#takeSoftBlur)">
             <animateMotion dur="5.6s" begin="1.1s" repeatCount="indefinite">
-              <mpath href="#TL3" />
+              <mpath href="#takeTL3" />
             </animateMotion>
           </circle>
           <circle r="2" fill="#FFB266" filter="url(#takeSoftBlur)">
             <animateMotion dur="6.4s" begin="2.4s" repeatCount="indefinite">
-              <mpath href="#TL5" />
+              <mpath href="#takeTL5" />
             </animateMotion>
           </circle>
           <circle r="2.4" fill="#d4bfff" filter="url(#takeSoftBlur)">
             <animateMotion dur="3.8s" begin="0.6s" repeatCount="indefinite">
-              <mpath href="#TL4" />
+              <mpath href="#takeTL4" />
             </animateMotion>
           </circle>
           <circle r="2.6" fill="#d4bfff" filter="url(#takeSoftBlur)">
             <animateMotion dur="4.6s" begin="0.3s" repeatCount="indefinite">
-              <mpath href="#TR2" />
+              <mpath href="#takeTR2" />
             </animateMotion>
           </circle>
           <circle r="2.2" fill="#a884ff" filter="url(#takeSoftBlur)">
             <animateMotion dur="5.2s" begin="1.8s" repeatCount="indefinite">
-              <mpath href="#TR4" />
+              <mpath href="#takeTR4" />
             </animateMotion>
           </circle>
           <circle r="2" fill="#FFB266" filter="url(#takeSoftBlur)">
             <animateMotion dur="6.0s" begin="3.0s" repeatCount="indefinite">
-              <mpath href="#TR6" />
+              <mpath href="#takeTR6" />
             </animateMotion>
           </circle>
           <circle r="2.4" fill="#d4bfff" filter="url(#takeSoftBlur)">
             <animateMotion dur="3.6s" begin="0.9s" repeatCount="indefinite">
-              <mpath href="#TR1" />
+              <mpath href="#takeTR1" />
             </animateMotion>
           </circle>
 
