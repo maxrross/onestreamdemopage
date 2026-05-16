@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OneStream — Take Finance Further</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --navy-abyss: #03091A;
+    --navy-deep: #061024;
+    --navy: #0A1A33;
+    --navy-light: #142849;
+    --cyan: #00E1FF;
+    --cyan-bright: #7FF1FF;
+    --cyan-soft: #5BD3F0;
+    --blue: #4A7FE0;
+    --amber: #FFB266;
+    --white: #F4F8FF;
+    --muted: #8094B8;
+    --muted-strong: #B3C2DD;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 255, 255, 0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--navy-abyss);
+    color: var(--white);
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     SECTION
+     ───────────────────────────────────────────────────────── */
+  .cta-module {
+    position: relative;
+    padding: 160px 32px 168px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 110%, rgba(0, 225, 255, 0.18), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 15% 10%, rgba(74, 127, 224, 0.10), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 85% 15%, rgba(0, 225, 255, 0.06), transparent 60%),
+      linear-gradient(180deg, var(--navy-abyss) 0%, #050E22 50%, #07142A 100%);
+  }
+
+  /* faint grid */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 88px 88px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 55%, black 20%, transparent 78%);
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 55%, black 20%, transparent 78%);
+    opacity: 0.55;
+    z-index: 0;
+  }
+
+  /* corner ticks for a technical / dashboard feel */
+  .tick {
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1px solid var(--line-strong);
+    z-index: 1;
+  }
+  .tick.tl { top: 28px; left: 28px; border-right: none; border-bottom: none; }
+  .tick.tr { top: 28px; right: 28px; border-left: none; border-bottom: none; }
+  .tick.bl { bottom: 28px; left: 28px; border-right: none; border-top: none; }
+  .tick.br { bottom: 28px; right: 28px; border-left: none; border-top: none; }
+
+  /* corner labels — small technical detail */
+  .corner-label {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    opacity: 0.6;
+    z-index: 1;
+  }
+  .corner-label.tl { top: 30px; left: 56px; }
+  .corner-label.tr { top: 30px; right: 56px; }
+  .corner-label.br { bottom: 30px; right: 56px; }
+  .corner-label.bl { bottom: 30px; left: 56px; }
+
+  /* SVG flow layer */
+  .flow {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* content container */
+  .container {
+    position: relative;
+    z-index: 3;
+    max-width: 1040px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     TYPE
+     ───────────────────────────────────────────────────────── */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 18px 9px 14px;
+    font-family: 'Geist', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: rgba(0, 225, 255, 0.05);
+    border: 1px solid rgba(0, 225, 255, 0.22);
+    border-radius: 100px;
+    backdrop-filter: blur(6px);
+  }
+  .eyebrow .dot {
+    width: 7px; height: 7px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(0, 225, 255, 0.18), 0 0 16px rgba(0, 225, 255, 0.8);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .eyebrow .sep {
+    width: 1px; height: 12px;
+    background: rgba(0, 225, 255, 0.3);
+  }
+  .eyebrow .small {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.18em;
+    color: var(--muted-strong);
+    font-weight: 400;
+  }
+
+  h2 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    font-size: clamp(52px, 7.2vw, 108px);
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+    margin: 36px 0 32px;
+    color: var(--white);
+  }
+  h2 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    background: linear-gradient(110deg, var(--cyan-bright) 0%, var(--cyan) 45%, #B6F4FF 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    padding: 0 0.04em 0 0.02em;
+  }
+  h2 em::after {
+    content: '';
+    position: absolute;
+    left: 8%; right: 8%;
+    bottom: 0.12em;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 225, 255, 0.45), transparent);
+  }
+  h2 .period {
+    color: var(--cyan);
+    margin-left: 2px;
+  }
+
+  .copy {
+    font-size: clamp(17px, 1.45vw, 20px);
+    line-height: 1.55;
+    color: var(--muted-strong);
+    max-width: 720px;
+    margin: 0 auto 52px;
+    font-weight: 400;
+  }
+  .copy strong {
+    color: var(--white);
+    font-weight: 500;
+    position: relative;
+  }
+  .copy .ai {
+    color: var(--cyan-bright);
+    font-weight: 500;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     CTA BUTTONS
+     ───────────────────────────────────────────────────────── */
+  .actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cta-glow {
+    position: relative;
+    display: inline-block;
+  }
+  /* sonar rings around the primary CTA */
+  .cta-glow::before,
+  .cta-glow::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 9px;
+    border: 1px solid rgba(0, 225, 255, 0.45);
+    pointer-events: none;
+    animation: ring-pulse 2.6s cubic-bezier(0.3, 0, 0.6, 1) infinite;
+  }
+  .cta-glow::after { animation-delay: 1.3s; }
+
+  .cta-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 32px;
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.008em;
+    color: #021525;
+    background: linear-gradient(135deg, #B6F4FF 0%, var(--cyan-bright) 30%, var(--cyan) 65%, #00C2E2 100%);
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(0, 225, 255, 0.85),
+      0 14px 44px rgba(0, 225, 255, 0.42),
+      0 0 90px rgba(0, 225, 255, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 rgba(0, 70, 100, 0.25);
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      110deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.0) 30%,
+      rgba(255, 255, 255, 0.55) 50%,
+      rgba(255, 255, 255, 0.0) 70%,
+      transparent 100%
+    );
+    animation: shimmer 3.4s ease-in-out infinite;
+    transform: skewX(-18deg);
+  }
+  .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 1px var(--cyan-bright),
+      0 18px 60px rgba(0, 225, 255, 0.55),
+      0 0 140px rgba(0, 225, 255, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(0, 70, 100, 0.25);
+  }
+  .cta-primary .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .cta-primary:hover .arrow {
+    transform: translateX(5px);
+  }
+  .cta-primary .arrow svg { display: block; }
+
+  /* secondary */
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 26px;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.003em;
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 7px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+  }
+  .cta-secondary:hover {
+    border-color: rgba(0, 225, 255, 0.5);
+    background: rgba(0, 225, 255, 0.05);
+    color: var(--cyan-bright);
+  }
+  .cta-secondary .play {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .cta-secondary:hover .play {
+    background: rgba(0, 225, 255, 0.08);
+  }
+  .cta-secondary .play svg { display: block; }
+
+  /* ─────────────────────────────────────────────────────────
+     TRUST STRIP
+     ───────────────────────────────────────────────────────── */
+  .trust {
+    margin-top: 96px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    align-items: start;
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .trust-item {
+    text-align: left;
+    padding: 0 4px;
+    position: relative;
+  }
+  .trust-item + .trust-item::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    background: var(--line);
+  }
+  .trust-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .trust-num .accent {
+    color: var(--cyan);
+  }
+  .trust-label {
+    font-family: 'Geist', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     KEYFRAMES
+     ───────────────────────────────────────────────────────── */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.45); }
+  }
+  @keyframes shimmer {
+    0%   { left: -120%; }
+    55%, 100% { left: 220%; }
+  }
+  @keyframes ring-pulse {
+    0%   { transform: scale(1); opacity: 0.75; }
+    100% { transform: scale(1.22); opacity: 0; }
+  }
+  @keyframes flow {
+    to { stroke-dashoffset: -240; }
+  }
+  @keyframes glow {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.08); }
+  }
+  @keyframes drift {
+    0%   { transform: translate3d(0, 0, 0); }
+    50%  { transform: translate3d(0, -6px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  .stream {
+    stroke-dasharray: 2 14;
+    animation: flow 7s linear infinite;
+  }
+  .stream.slow { animation-duration: 11s; }
+  .stream.fast { animation-duration: 4.5s; }
+  .stream.reverse { animation-direction: reverse; }
+  .node-glow {
+    transform-origin: center;
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  /* reveal on load */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: reveal 1.05s cubic-bezier(0.22, 0.8, 0.22, 1) forwards;
+  }
+  .reveal-1 { animation-delay: 0.05s; }
+  .reveal-2 { animation-delay: 0.18s; }
+  .reveal-3 { animation-delay: 0.34s; }
+  .reveal-4 { animation-delay: 0.52s; }
+  .reveal-5 { animation-delay: 0.72s; }
+  @keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     RESPONSIVE
+     ───────────────────────────────────────────────────────── */
+  @media (max-width: 880px) {
+    .corner-label, .tick { display: none; }
+    .trust { grid-template-columns: repeat(2, 1fr); gap: 28px 32px; }
+    .trust-item + .trust-item:nth-child(3)::before { display: none; }
+  }
+  @media (max-width: 640px) {
+    .cta-module { padding: 110px 22px 120px; }
+    h2 { margin: 28px 0 24px; }
+    .copy { margin-bottom: 40px; }
+    .actions { flex-direction: column; align-items: stretch; width: 100%; }
+    .cta-primary, .cta-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+    .trust { grid-template-columns: 1fr; gap: 24px; margin-top: 64px; }
+    .trust-item + .trust-item::before { display: none; }
+    .trust-item { padding: 16px 0 0; border-top: 1px solid var(--line); }
+    .trust-item:first-child { border-top: none; padding-top: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="cta-module" aria-labelledby="cta-heading">
+  <!-- background grid -->
+  <div class="grid" aria-hidden="true"></div>
+
+  <!-- corner technical details -->
+  <div class="tick tl" aria-hidden="true"></div>
+  <div class="tick tr" aria-hidden="true"></div>
+  <div class="tick bl" aria-hidden="true"></div>
+  <div class="tick br" aria-hidden="true"></div>
+
+  <!-- SVG: converging streams animation -->
+  <svg
+    class="flow"
+    viewBox="0 0 1600 900"
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+  >
+    <defs>
+      <!-- left-to-center stream gradient -->
+      <linearGradient id="gradL" x1="0" y1="0.5" x2="1" y2="0.5">
+        <stop offset="0%"  stop-color="#00E1FF" stop-opacity="0" />
+        <stop offset="30%" stop-color="#4A7FE0" stop-opacity="0.35" />
+        <stop offset="75%" stop-color="#00E1FF" stop-opacity="0.85" />
+        <stop offset="100%" stop-color="#7FF1FF" stop-opacity="1" />
+      </linearGradient>
+      <!-- right-to-center stream gradient -->
+      <linearGradient id="gradR" x1="1" y1="0.5" x2="0" y2="0.5">
+        <stop offset="0%"  stop-color="#00E1FF" stop-opacity="0" />
+        <stop offset="30%" stop-color="#4A7FE0" stop-opacity="0.35" />
+        <stop offset="75%" stop-color="#00E1FF" stop-opacity="0.85" />
+        <stop offset="100%" stop-color="#7FF1FF" stop-opacity="1" />
+      </linearGradient>
+      <!-- soft secondary streams -->
+      <linearGradient id="gradLsoft" x1="0" y1="0.5" x2="1" y2="0.5">
+        <stop offset="0%"  stop-color="#3A6BB8" stop-opacity="0" />
+        <stop offset="60%" stop-color="#5B8DEF" stop-opacity="0.28" />
+        <stop offset="100%" stop-color="#7FF1FF" stop-opacity="0.7" />
+      </linearGradient>
+      <linearGradient id="gradRsoft" x1="1" y1="0.5" x2="0" y2="0.5">
+        <stop offset="0%"  stop-color="#3A6BB8" stop-opacity="0" />
+        <stop offset="60%" stop-color="#5B8DEF" stop-opacity="0.28" />
+        <stop offset="100%" stop-color="#7FF1FF" stop-opacity="0.7" />
+      </linearGradient>
+
+      <!-- convergence glow -->
+      <radialGradient id="nodeGlow" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0%"   stop-color="#00E1FF" stop-opacity="0.55" />
+        <stop offset="35%"  stop-color="#00E1FF" stop-opacity="0.18" />
+        <stop offset="100%" stop-color="#00E1FF" stop-opacity="0" />
+      </radialGradient>
+
+      <!-- particle blur -->
+      <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="0.6" />
+      </filter>
+
+      <!-- reusable converging paths -->
+      <path id="L1" d="M -40,140  C 320,150 540,400 800,640" />
+      <path id="L2" d="M -40,260  C 360,265 580,440 800,640" />
+      <path id="L3" d="M -40,380  C 380,380 620,490 800,640" />
+      <path id="L4" d="M -40,520  C 360,520 640,570 800,640" />
+      <path id="L5" d="M -40,660  C 320,640 620,640 800,640" />
+      <path id="L6" d="M -40,780  C 280,760 600,720 800,640" />
+
+      <path id="R1" d="M 1640,140  C 1280,150 1060,400 800,640" />
+      <path id="R2" d="M 1640,260  C 1240,265 1020,440 800,640" />
+      <path id="R3" d="M 1640,380  C 1220,380 980,490 800,640" />
+      <path id="R4" d="M 1640,520  C 1240,520 960,570 800,640" />
+      <path id="R5" d="M 1640,660  C 1280,640 980,640 800,640" />
+      <path id="R6" d="M 1640,780  C 1320,760 1000,720 800,640" />
+    </defs>
+
+    <!-- horizontal axis suggestion -->
+    <line x1="0" y1="640" x2="1600" y2="640"
+          stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+
+    <!-- soft secondary streams (background layer) -->
+    <g fill="none" stroke-width="1" stroke-linecap="round" opacity="0.55">
+      <use href="#L1" stroke="url(#gradLsoft)" class="stream slow" />
+      <use href="#L2" stroke="url(#gradLsoft)" class="stream slow reverse" />
+      <use href="#L5" stroke="url(#gradLsoft)" class="stream" />
+      <use href="#L6" stroke="url(#gradLsoft)" class="stream slow" />
+      <use href="#R1" stroke="url(#gradRsoft)" class="stream slow reverse" />
+      <use href="#R2" stroke="url(#gradRsoft)" class="stream slow" />
+      <use href="#R5" stroke="url(#gradRsoft)" class="stream" />
+      <use href="#R6" stroke="url(#gradRsoft)" class="stream slow reverse" />
+    </g>
+
+    <!-- bright primary streams (foreground) -->
+    <g fill="none" stroke-width="1.4" stroke-linecap="round">
+      <use href="#L1" stroke="url(#gradL)" class="stream" />
+      <use href="#L2" stroke="url(#gradL)" class="stream fast" />
+      <use href="#L3" stroke="url(#gradL)" class="stream slow" />
+      <use href="#L4" stroke="url(#gradL)" class="stream" />
+      <use href="#L5" stroke="url(#gradL)" class="stream fast" />
+      <use href="#L6" stroke="url(#gradL)" class="stream slow" />
+
+      <use href="#R1" stroke="url(#gradR)" class="stream slow" />
+      <use href="#R2" stroke="url(#gradR)" class="stream" />
+      <use href="#R3" stroke="url(#gradR)" class="stream fast" />
+      <use href="#R4" stroke="url(#gradR)" class="stream slow" />
+      <use href="#R5" stroke="url(#gradR)" class="stream" />
+      <use href="#R6" stroke="url(#gradR)" class="stream fast" />
+    </g>
+
+    <!-- convergence node glow -->
+    <g class="node-glow">
+      <circle cx="800" cy="640" r="220" fill="url(#nodeGlow)" />
+      <circle cx="800" cy="640" r="110" fill="url(#nodeGlow)" />
+      <circle cx="800" cy="640" r="48"  fill="url(#nodeGlow)" />
+    </g>
+
+    <!-- tiny target rings at convergence -->
+    <g stroke="rgba(0,225,255,0.35)" fill="none" stroke-width="1">
+      <circle cx="800" cy="640" r="32" />
+      <circle cx="800" cy="640" r="58" stroke-opacity="0.55" stroke-dasharray="2 6" />
+    </g>
+    <circle cx="800" cy="640" r="4.5" fill="#7FF1FF" filter="url(#softBlur)" />
+
+    <!-- traveling particles along stream paths -->
+    <circle r="2.6" fill="#7FF1FF" filter="url(#softBlur)">
+      <animateMotion dur="4.2s" repeatCount="indefinite">
+        <mpath href="#L1" />
+      </animateMotion>
+    </circle>
+    <circle r="2.2" fill="#00E1FF" filter="url(#softBlur)">
+      <animateMotion dur="5.6s" begin="1.1s" repeatCount="indefinite">
+        <mpath href="#L3" />
+      </animateMotion>
+    </circle>
+    <circle r="2" fill="#FFB266" filter="url(#softBlur)">
+      <animateMotion dur="6.4s" begin="2.4s" repeatCount="indefinite">
+        <mpath href="#L5" />
+      </animateMotion>
+    </circle>
+    <circle r="2.4" fill="#7FF1FF" filter="url(#softBlur)">
+      <animateMotion dur="3.8s" begin="0.6s" repeatCount="indefinite">
+        <mpath href="#L4" />
+      </animateMotion>
+    </circle>
+
+    <circle r="2.6" fill="#7FF1FF" filter="url(#softBlur)">
+      <animateMotion dur="4.6s" begin="0.3s" repeatCount="indefinite">
+        <mpath href="#R2" />
+      </animateMotion>
+    </circle>
+    <circle r="2.2" fill="#00E1FF" filter="url(#softBlur)">
+      <animateMotion dur="5.2s" begin="1.8s" repeatCount="indefinite">
+        <mpath href="#R4" />
+      </animateMotion>
+    </circle>
+    <circle r="2" fill="#FFB266" filter="url(#softBlur)">
+      <animateMotion dur="6.0s" begin="3.0s" repeatCount="indefinite">
+        <mpath href="#R6" />
+      </animateMotion>
+    </circle>
+    <circle r="2.4" fill="#7FF1FF" filter="url(#softBlur)">
+      <animateMotion dur="3.6s" begin="0.9s" repeatCount="indefinite">
+        <mpath href="#R1" />
+      </animateMotion>
+    </circle>
+
+    <!-- floating axis labels — data sources -->
+    <g font-family="JetBrains Mono, monospace" font-size="9.5" fill="rgba(200,220,255,0.35)" letter-spacing="1.5">
+      <text x="20"   y="135" text-anchor="start">FINANCIAL</text>
+      <text x="20"   y="255" text-anchor="start">OPERATIONAL</text>
+      <text x="20"   y="375" text-anchor="start">PEOPLE</text>
+      <text x="20"   y="515" text-anchor="start">SUPPLY</text>
+      <text x="20"   y="655" text-anchor="start">ESG</text>
+      <text x="20"   y="775" text-anchor="start">ML / AI</text>
+      <text x="1580" y="135" text-anchor="end">PLAN</text>
+      <text x="1580" y="255" text-anchor="end">CONSOLIDATE</text>
+      <text x="1580" y="375" text-anchor="end">FORECAST</text>
+      <text x="1580" y="515" text-anchor="end">REPORT</text>
+      <text x="1580" y="655" text-anchor="end">ANALYZE</text>
+      <text x="1580" y="775" text-anchor="end">DECIDE</text>
+    </g>
+  </svg>
+
+  <!-- content -->
+  <div class="container">
+    <h2 id="cta-heading" class="reveal reveal-2">
+      Take Finance <em>Further</em><span class="period">.</span>
+    </h2>
+
+    <p class="copy reveal reveal-3">
+      OneStream is the only enterprise finance platform that
+      <strong>seamlessly unifies</strong> all your financial and operational data,
+      embeds <span class="ai">AI to boost productivity</span>,
+      and <strong>adapts to fit</strong> your unique needs.
+    </p>
+
+    <div class="actions reveal reveal-4">
+      <span class="cta-glow">
+        <button class="cta-primary" type="button">
+          Request a Demo
+          <span class="arrow" aria-hidden="true">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+              <path d="M1 7 H16 M10.5 1.5 L16 7 L10.5 12.5"
+                    stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </button>
+      </span>
+      <button class="cta-secondary" type="button">
+        <span class="play" aria-hidden="true">
+          <svg width="8" height="9" viewBox="0 0 8 9" fill="none">
+            <path d="M1 1 L7 4.5 L1 8 Z" fill="currentColor" />
+          </svg>
+        </span>
+        Watch the platform tour
+      </button>
+    </div>
+
+    <div class="trust reveal reveal-5" aria-label="Customer outcomes">
+      <div class="trust-item">
+        <div class="trust-num">1,800<span class="accent">+</span></div>
+        <div class="trust-label">Customers<br />worldwide</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">$1.2<span class="accent">T</span></div>
+        <div class="trust-label">In revenue<br />managed</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">98<span class="accent">%</span></div>
+        <div class="trust-label">Customer<br />retention</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">75<span class="accent">%</span></div>
+        <div class="trust-label">Faster<br />close cycles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
